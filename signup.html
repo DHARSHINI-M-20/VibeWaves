@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Signup</title>
+    </head>
+    <body>
+        <h1>User ID</h1>
+        <input type="text" name="Userid">
+        <h1>Password</h1>
+        <input type="password" name="password">
+        <h1>Confirm Password</h1>
+        <input type="password" name="cpassword"><br>
+        <h1>Gender</h1><br>
+        <style>
+            .ra
+            {
+                display: inline-block;
+                text-align: left;
+            }
+        </style>
+        <input type="radio" name="gender" value="female" id="female">
+        <label for="female" class="ra">Female</label>
+        <input type="radio" name="gender" value="male" id="male">
+        <label for="male" class="ra">Male</label><br>
+        <label for="birthday"><h1>Select your birthday</h1></label>
+        <input type="date" id="birthday" name="birthday"><br><br>
+        <label for="agree">
+            <input type="checkbox" id="agree" name="agree">
+            I agree to the terms and conditions
+        </label><br><br>
+        <input type="button" name="Proceed" value="Proceed">
+    </body>
+</html>
