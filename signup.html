@@ -1,32 +1,224 @@
-<html>
-    <head>
-        <title>Signup</title>
-    </head>
-    <body>
-        <h1>User ID</h1>
-        <input type="text" name="Userid">
-        <h1>Password</h1>
-        <input type="password" name="password">
-        <h1>Confirm Password</h1>
-        <input type="password" name="cpassword"><br>
-        <h1>Gender</h1><br>
-        <style>
-            .ra
-            {
-                display: inline-block;
-                text-align: left;
-            }
-        </style>
-        <input type="radio" name="gender" value="female" id="female">
-        <label for="female" class="ra">Female</label>
-        <input type="radio" name="gender" value="male" id="male">
-        <label for="male" class="ra">Male</label><br>
-        <label for="birthday"><h1>Select your birthday</h1></label>
-        <input type="date" id="birthday" name="birthday"><br><br>
-        <label for="agree">
-            <input type="checkbox" id="agree" name="agree">
-            I agree to the terms and conditions
-        </label><br><br>
-        <input type="button" name="Proceed" value="Proceed">
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - VibeWaves</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url(si-bg.jpeg) no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Signup Container */
+        .signup-container {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .music-note {
+            font-size: 50px;
+            text-align: center;
+            color: #FFEB3B;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus,
+        input[type="email"]:focus {
+            border: 2px solid #FF4081;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        label {
+            font-size: 14px;
+        }
+
+        .ra {
+            margin-right: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: white;
+            background-color: #FF4081;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #E91E63;
+            transform: scale(1.1);
+        }
+
+        button[type="reset"] {
+            background-color: #607D8B;
+        }
+
+        button[type="reset"]:hover {
+            background-color: #455A64;
+        }
+
+        fieldset {
+            border: none;
+            margin-bottom: 15px;
+        }
+
+        legend {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #FFEB3B;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Light Theme Styles */
+        input[type="checkbox"]:checked ~ .signup-container {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        input[type="checkbox"]:checked ~ .signup-container .music-note {
+            color: #FF4081;
+        }
+
+        input[type="checkbox"]:checked ~ .signup-container h1 {
+            color: #4CAF50;
+        }
+
+        /* Toggle button styles */
+        #theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Hidden Checkbox for Theme Toggle -->
+    <input type="checkbox" id="theme-toggle-checkbox" style="display: none;">
+    <label for="theme-toggle-checkbox" id="theme-toggle">🌙</label>
+
+    <div class="signup-container">
+        <div class="music-note">🎵</div>
+        <h1>Signup to VibeWaves</h1>
+        <form>
+            <fieldset>
+                <legend><span style="color: #FFEB3B;">🎧 Account Information</span></legend>
+                <input type="text" name="Userid" placeholder="Enter your username" required>
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <input type="password" name="password" placeholder="Create a password" required>
+                <input type="password" name="cpassword" placeholder="Confirm your password" required>
+            </fieldset>
+
+            <fieldset>
+                <legend><span style="color: #4CAF50;">🎤 Personal Information</span></legend>
+                <label for="gender">Gender:</label><br>
+                <input type="radio" name="gender" value="female" id="female" required>
+                <label for="female" class="ra">Female</label>
+                <input type="radio" name="gender" value="male" id="male">
+                <label for="male" class="ra">Male</label><br>
+
+                <label for="birthday">Select your birthday:</label><br>
+                <input type="date" id="birthday" name="birthday" required>
+            </fieldset>
+
+            <fieldset>
+                <legend><span style="color: #03A9F4;">🎼 Terms and Conditions</span></legend>
+                <label for="agree">
+                    <input type="checkbox" id="agree" name="agree" required>
+                    I agree to the terms and conditions
+                </label>
+            </fieldset>
+
+            <div class="buttons">
+                <button type="submit">Signup</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+        <footer>
+            Already have an account? <a href="login.html">Login here</a>.
+        </footer>
+    </div>
+
+</body>
 </html>
