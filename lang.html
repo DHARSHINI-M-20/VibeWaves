@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Your Favorite Song Languages</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #7d0b8e;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px;
+    }
+    .language-card {
+      background-color: #1db954;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .language-card:hover {
+      transform: scale(1.1);
+      background-color: #1ed760;
+    }
+    .selected {
+      background-color: #004d40;
+    }
+    button {
+      background-color: #1db954;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #1ed760;
+    }
+  </style>
+</head>
+<body>
+  <h1>Select Your Favorite Song Languages</h1>
+  <div class="container">
+    <div class="language-card" data-language="English">English</div>
+    <div class="language-card" data-language="Hindi">Hindi</div>
+    <div class="language-card" data-language="Tamil">Tamil</div>
+    <div class="language-card" data-language="Telugu">Telugu</div>
+    <div class="language-card" data-language="Spanish">Spanish</div>
+    <div class="language-card" data-language="French">French</div>
+    <div class="language-card" data-language="Korean">Korean</div>
+    <div class="language-card" data-language="Japanese">Japanese</div>
+    <div class="language-card" data-language="Malayalam">Malayalam</div>
+    <div class="language-card" data-language="Punjabi">Punjabi</div>
+  </div>
+  <button id="submit-btn">Submit</button>
+
+  <script>
+    const languageCards = document.querySelectorAll('.language-card');
+    const submitButton = document.getElementById('submit-btn');
+    const selectedLanguages = new Set();
+
+    languageCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const language = card.dataset.language;
+        if (selectedLanguages.has(language)) {
+          selectedLanguages.delete(language);
+          card.classList.remove('selected');
+        } else {
+          selectedLanguages.add(language);
+          card.classList.add('selected');
+        }
+      });
+    });
+
+    submitButton.addEventListener('click', () => {
+      if (selectedLanguages.size > 0) {
+        alert(`You selected: ${Array.from(selectedLanguages).join(', ')}`);
+      } else {
+        alert('Please select at least one language.');
+      }
+    });
+  </script>
+</body>
+</html>

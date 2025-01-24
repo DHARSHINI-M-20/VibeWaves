@@ -18,7 +18,6 @@
             height: 100vh;
             overflow: hidden;
         }
-
         .login-container {
             background: rgba(0, 0, 0, 0.8);
             border-radius: 15px;
@@ -28,7 +27,6 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1.5s ease;
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -39,24 +37,20 @@
                 transform: translateY(0);
             }
         }
-
         .login-container h1 {
             text-align: center;
             margin-bottom: 30px;
             font-size: 2.5rem;
             color: #ff7e5f;
         }
-
         .login-container form {
             display: flex;
             flex-direction: column;
         }
-
         .form-group {
             margin-bottom: 20px;
             position: relative;
         }
-
         .form-group label {
             font-size: 1rem;
             margin-bottom: 8px;
@@ -67,7 +61,6 @@
             top: 8px;
             transition: all 0.3s ease;
         }
-
         .form-group input {
             width: 100%;
             padding: 12px;
@@ -78,13 +71,11 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-
         .form-group input:focus {
             outline: none;
             background: rgba(255, 255, 255, 0.4);
             box-shadow: 0 0 8px #ff7e5f;
         }
-
         .form-group input:focus + label,
         .form-group input:not(:placeholder-shown) + label {
             top: -12px;
@@ -92,7 +83,6 @@
             font-size: 0.9rem;
             color: #ff7e5f;
         }
-
         .btn {
             padding: 12px;
             background: linear-gradient(to right, #ff7e5f, #feb47b);
@@ -103,39 +93,55 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .btn:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(255, 126, 95, 0.5);
         }
-
         .extra-links {
             text-align: center;
             margin-top: 20px;
         }
-
         .extra-links a {
             color: #feb47b;
             text-decoration: none;
             font-size: 0.95rem;
             transition: color 0.3s;
         }
-
         .extra-links a:hover {
             color: #ff7e5f;
         }
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+        body {
+            top: 100 !important;
+        }
+        .goog-te-gadget {
+            font-size: 16px;
+            color: #333;
+        }
+        .translate-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        }
+
     </style>
 </head>
 <body>
+    <div class="translate-container">
+        <div id="google_translate_element"></div>
+    </div>
     <div class="login-container">
         <h1>VibeWaves</h1>
-        <form>
+        <form action="lang.html" method="post">
             <div class="form-group">
-                <input type="email" id="email" name="email" placeholder=" " required>
+                <input type="email" id="email" name="email" required>
                 <label for="email">Email</label>
             </div>
             <div class="form-group">
-                <input type="password" id="password" name="password" placeholder=" " required>
+                <input type="password" id="password" name="password" required>
                 <label for="password">Password</label>
             </div>
             <button type="submit" class="btn">Login</button>
@@ -145,5 +151,15 @@
             <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
         </div>
     </div>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,ta,hi,ko,fr,es,zh', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
