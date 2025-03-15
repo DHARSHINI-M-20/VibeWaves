@@ -1,0 +1,89 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './App.css';
+
+console.log("App component is rendering");
+
+const App = () => {
+  const [songs, setSongs] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentSong, setCurrentSong] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = React.useRef(null);
+
+  useEffect(() => {
+    fetchSongs();
+  }, []);
+
+  const fetchSongs = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/songs');
+      console.log('Fetched songs:', response.data);
+      setSongs(response.data);
+    } catch (error) {
+      console.error('Error fetching songs:', error);
+    }
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredSongs = songs.filter(song =>
+    song.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const playSong = (song) => {
+    setCurrentSong(song);
+    if (audioRef.current) {
+      audioRef.current.src = song.src; // Ensure the audio element reloads the new source
+      audioRef.current.load();
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(err => console.error('Audio playback failed:', err));
+    }
+  };
+
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(err => console.error('Audio playback failed:', err));
+      }
+    }
+  };
+
+  return (
+    <div className="app-container">
+      <h1>VibeWaves</h1>
+      <input
+        type="text"
+        placeholder="Search for songs..."
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <ul className="song-list">
+        {filteredSongs.map((song, index) => (
+          <li key={index} onClick={() => playSong(song)}>
+            {song.title}
+          </li>
+        ))}
+      </ul>
+      {currentSong && (
+        <div className="player">
+          <h2>{currentSong.title}</h2>
+          <audio ref={audioRef} controls />
+          <button onClick={togglePlayPause}>
+            {isPlaying ? '⏸️ Pause' : '▶️ Play'}
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;

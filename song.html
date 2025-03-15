@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Waves</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="player">
+        <h2 id="song-title">Select a song</h2>
+        <audio id="audio-player" controls></audio>
+        <button id="prev">⏮️ Prev</button>
+        <button id="play-pause">▶️ Play</button>
+        <button id="next">⏭️ Next</button>
+    </div>
+
+    <ul id="song-list"></ul>
+
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const songTitle = urlParams.get('song');
+            if (songTitle) {
+                const songUrl = `./songs/${encodeURIComponent(songTitle)}.mp3`;
+                console.log('Song URL:', songUrl);
+                $('#song-title').text(songTitle);
+                $('#audio-player').attr('src', songUrl);
+                $('#audio-player')[0].load();
+                $('#audio-player')[0].play().then(() => {
+                    console.log('Audio playback started');
+                }).catch(err => console.error('Audio playback failed:', err));
+
+                $('#audio-player').on('error', function() {
+                    console.error('Error loading audio file:', songUrl);
+                    alert('Failed to load the selected song. Please check the file name and format.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

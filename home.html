@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeWaves</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #6a11cb; 
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            margin: 0;
+        }
+        img {
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+        }
+        .button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #ff4757;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        .or {
+            font-style: italic;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        footer {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            color: #ff4757;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        /* Dropdown Styling */
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to VibeWaves</h1>
+        <img src="unique music-themed background with the name VibeWaves.png" alt="VibeWaves Logo" height="400" width="400">
+
+        <p>Already have an account?</p>
+        <a href="login.html" class="button" id="login-btn">Login</a>
+
+        <p class="or">or</p>
+
+        <a href="signup.html" class="button" id="signup-btn">Sign Up</a>
+
+        <!-- Dropdown for selecting a theme -->
+        <p>Select a Theme:</p>
+        <select id="theme-select">
+            <option value="light">Light Theme</option>
+            <option value="dark">Dark Theme</option>
+        </select>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 VibeWaves. All rights reserved. <br> Need help? <a href="help.html">Contact Support</a></p>
+    </footer>
+
+    <script>
+        // Selecting elements
+        const loginButton = document.getElementById('login-btn');
+        const signupButton = document.getElementById('signup-btn');
+        const themeSelect = document.getElementById('theme-select');
+
+        // Click Event - Alerts when login button is clicked
+        loginButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevents actual navigation for now
+            alert('Login button clicked!');
+        });
+
+        // Double Click Event - Alerts when sign-up button is double-clicked
+        signupButton.addEventListener('dblclick', function(event) {
+            event.preventDefault();
+            alert('Sign-up button double-clicked!');
+        });
+
+        // Mouseover Event - Changes button text on hover
+        loginButton.addEventListener('mouseover', function() {
+            loginButton.innerText = 'Click to Login!';
+        });
+        loginButton.addEventListener('mouseout', function() {
+            loginButton.innerText = 'Login';
+        });
+
+        // Keyboard Event - Detects key presses
+        document.addEventListener('keydown', function(event) {
+            console.log(`Key pressed: ${event.key}`);
+        });
+
+        // Onchange Event - Changes theme based on selection
+        themeSelect.addEventListener('change', function() {
+            if (themeSelect.value === 'dark') {
+                document.body.style.background = '#222';
+            } else {
+                document.body.style.background = '#6a11cb';
+            }
+            alert(`Theme changed to: ${themeSelect.value}`);
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* General Page Styling */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #121212, #1a1a1a);
+    color: white;
+    padding: 20px;
+}
+
+/* Music Player Container */
+.player {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* Buttons Styling */
+button {
+    padding: 12px 18px;
+    margin: 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+#play-pause {
+    background: #1DB954;
+    color: white;
+}
+
+#prev, #next {
+    background: #333;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* Song List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    padding: 12px;
+    margin: 8px auto;
+    background: #1DB954;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+    width: 80%;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+li:hover {
+    background: #16a34a;
+    transform: translateY(-3px);
+}
+
+/* Song Title Styling */
+#song-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #1DB954;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .player {
+        width: 100%;
+    }
+    li {
+        width: 90%;
+    }
+}

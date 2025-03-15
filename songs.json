@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Song 1",
+    "src": "songs/s1.mp3"
+  },
+  {
+    "id": 2,
+    "title": "Song 2",
+    "src": "songs/song2.mp3"
+  },
+  {
+    "id": 3,
+    "title": "updatedSong 3",
+    "src": "songs/song3.mp3",
+    "url": "http://localhost:5000/songs/songs/song3.mp3"
+  },
+  {
+    "id": 4,
+    "title": "partiallyupdatedSong 4",
+    "src": "songs/song4.mp3",
+    "url": "http://localhost:5000/songs/songs/song4.mp3"
+  },
+  {
+    "id": 5,
+    "title": "Song 5",
+    "src": "songs/song5.mp3"
+  }
+]

@@ -1,0 +1,52 @@
+.app-container {
+  text-align: center;
+  padding: 20px;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.song-list {
+  list-style: none;
+  padding: 0;
+}
+
+.song-list li {
+  padding: 10px;
+  margin: 10px 0;
+  background: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.song-list li:hover {
+  background: #ddd;
+}
+
+.player {
+  margin-top: 20px;
+}
+
+.player h2 {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff6a88;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ff3e6b;
+}

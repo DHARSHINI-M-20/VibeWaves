@@ -69,12 +69,11 @@
     <div class="language-card" data-language="Punjabi">Punjabi</div>
   </div>
   <button id="submit-btn">Submit</button>
-
   <script>
     const languageCards = document.querySelectorAll('.language-card');
     const submitButton = document.getElementById('submit-btn');
     const selectedLanguages = new Set();
-
+  
     languageCards.forEach(card => {
       card.addEventListener('click', () => {
         const language = card.dataset.language;
@@ -87,14 +86,15 @@
         }
       });
     });
-
+  
     submitButton.addEventListener('click', () => {
       if (selectedLanguages.size > 0) {
-        alert(`You selected: ${Array.from(selectedLanguages).join(', ')}`);
+        const queryParams = new URLSearchParams({ languages: Array.from(selectedLanguages) }).toString();
+        window.location.href = `song.html`; // Redirects to next page
       } else {
         alert('Please select at least one language.');
       }
     });
-  </script>
+  </script>  
 </body>
 </html>
