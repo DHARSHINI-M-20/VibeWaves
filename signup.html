@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup - VibeWaves</title>
+    <title>Vibe Waves</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -165,17 +166,28 @@
             transform: scale(1.2);
         }
 
+        .settings-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 30px;
+        }
+
     </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 
     <input type="checkbox" id="theme-toggle-checkbox" style="display: none;">
     <label for="theme-toggle-checkbox" id="theme-toggle">🌙</label>
 
+    <span class="material-icons settings-icon" onclick="goToSettings()">settings</span>
+
     <div class="signup-container">
         <div class="music-note">🎵</div>
         <h1>Signup to VibeWaves</h1>
-        <form>
+        <form onsubmit="return validateSignupForm()">
             <fieldset>
                 <legend><span style="color: #FFEB3B;">🎧 Account Information</span></legend>
                 <input type="text" name="Userid" placeholder="Enter your username" required>
@@ -194,6 +206,7 @@
 
                 <label for="birthday">Select your birthday:</label><br>
                 <input type="date" id="birthday" name="birthday" required>
+                <p id="dob-error" style="color: red; display: none;">You must be at least 18 years old</p>
             </fieldset>
 
             <fieldset>
@@ -213,6 +226,31 @@
             Already have an account? <a href="login.html">Login here</a>.
         </footer>
     </div>
+
+    <script>
+        function goToSettings() {
+            window.location.href = '/settings';
+        }
+
+        function validateSignupForm() {
+            const dobInput = document.getElementById('birthday');
+            const dobError = document.getElementById('dob-error');
+            const today = new Date();
+            const birthDate = new Date(dobInput.value);
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const monthDifference = today.getMonth() - birthDate.getMonth();
+            if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            if (age < 18) {
+                dobError.style.display = 'block';
+                return false;
+            } else {
+                dobError.style.display = 'none';
+                return true;
+            }
+        }
+    </script>
 
 </body>
 </html>

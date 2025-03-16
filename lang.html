@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Select Your Favorite Song Languages</title>
+  <title>Vibe Waves</title>
+  <link rel="icon" type="image/png" href="logo.png">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -52,9 +53,17 @@
     button:hover {
       background-color: #1ed760;
     }
+    .settings-icon {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 30px;
+    }
   </style>
 </head>
 <body>
+  <span class="material-icons settings-icon" onclick="goToSettings()">settings</span>
   <h1>Select Your Favorite Song Languages</h1>
   <div class="container">
     <div class="language-card" data-language="English">English</div>
@@ -90,11 +99,15 @@
     submitButton.addEventListener('click', () => {
       if (selectedLanguages.size > 0) {
         const queryParams = new URLSearchParams({ languages: Array.from(selectedLanguages) }).toString();
-        window.location.href = `song.html`; // Redirects to next page
+        window.location.href = "http://localhost:3000/"; // Redirects to next page
       } else {
         alert('Please select at least one language.');
       }
     });
+
+    function goToSettings() {
+      window.location.href = '/settings';
+    }
   </script>  
 </body>
 </html>

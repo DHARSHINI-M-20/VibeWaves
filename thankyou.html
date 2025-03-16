@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - VibeWaves</title>
+    <title>Vibe Waves</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
         * {
             margin: 0;
@@ -29,11 +30,20 @@
         p {
             font-size: 1.2em;
         }
+        .settings-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 30px;
+        }
     </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <h1>Thank You!</h1>
     <p id="thankyou-message"></p>
+    <span class="material-icons settings-icon" onclick="goToSettings()">settings</span>
     <script>
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -44,6 +54,10 @@
             document.getElementById("thankyou-message").textContent = `Thank you, ${username}. We will work on it sincerely.`;
         } else {
             document.getElementById("thankyou-message").textContent = "Thank you! We will work on it sincerely.";
+        }
+
+        function goToSettings() {
+            window.location.href = '/settings';
         }
     </script>
 </body>

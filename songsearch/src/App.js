@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import SettingsPage from './settings';
 
 console.log("App component is rendering");
 
@@ -10,6 +12,7 @@ const App = () => {
   const [currentSong, setCurrentSong] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = React.useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchSongs();
@@ -57,31 +60,43 @@ const App = () => {
     }
   };
 
+  const goToSettings = () => {
+    navigate('/settings');
+  };
+
   return (
     <div className="app-container">
-      <h1>VibeWaves</h1>
-      <input
-        type="text"
-        placeholder="Search for songs..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      <ul className="song-list">
-        {filteredSongs.map((song, index) => (
-          <li key={index} onClick={() => playSong(song)}>
-            {song.title}
-          </li>
-        ))}
-      </ul>
-      {currentSong && (
-        <div className="player">
-          <h2>{currentSong.title}</h2>
-          <audio ref={audioRef} controls />
-          <button onClick={togglePlayPause}>
-            {isPlaying ? '⏸️ Pause' : '▶️ Play'}
-          </button>
-        </div>
-      )}
+      <span className="material-icons settings-icon" onClick={goToSettings}>settings</span>
+      <Routes>
+        <Route path="/" element={
+          <>
+            <h1>VibeWaves</h1>
+            <input
+              type="text"
+              placeholder="Search for songs..."
+              value={searchTerm}
+              onChange={handleSearch}
+            />
+            <ul className="song-list">
+              {filteredSongs.map((song, index) => (
+                <li key={index} onClick={() => playSong(song)}>
+                  {song.title}
+                </li>
+              ))}
+            </ul>
+            {currentSong && (
+              <div className="player">
+                <h2>{currentSong.title}</h2>
+                <audio ref={audioRef} controls />
+                <button onClick={togglePlayPause}>
+                  {isPlaying ? '⏸️ Pause' : '▶️ Play'}
+                </button>
+              </div>
+            )}
+          </>
+        } />
+        <Route path="/settings" element={<SettingsPage />} />
+      </Routes>
     </div>
   );
 };

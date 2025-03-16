@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Support - VibeWaves</title>
+    <title>Vibe Waves</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
         * {
             margin: 0;
@@ -127,9 +128,18 @@
         body.dark-theme .faq ul li a:hover {
             color: #81a1c1;
         }
+        .settings-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 30px;
+        }
     </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
+    <span class="material-icons settings-icon" onclick="goToSettings()">settings</span>
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
     <header>
         <div class="logo">
@@ -192,6 +202,9 @@
             } else {
                 toggleButton.textContent = '🌙';
             }
+        }
+        function goToSettings() {
+            window.location.href = '/settings';
         }
     </script>
 </body>
