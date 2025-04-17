@@ -1,0 +1,20 @@
+<songs>
+    <song>
+        <title>Shape of You</title>
+        <artist>Ed Sheeran</artist>
+        <genre>Pop</genre>
+        <duration>4</duration>
+    </song>
+    <song>
+        <title>Believer</title>
+        <artist>Imagine Dragons</artist>
+        <genre>Rock</genre>
+        <duration>3</duration>
+    </song>
+    <song>
+        <title>Calm Down</title>
+        <artist>Rema</artist>
+        <genre>Afrobeats</genre>
+        <duration>5</duration>
+    </song>
+</songs>

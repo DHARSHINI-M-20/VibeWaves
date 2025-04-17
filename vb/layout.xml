@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <title>VibeWaves Console UI</title>
+    <button id="playButton">Play</button>
+    <button id="pauseButton">Pause</button>
+</layout>

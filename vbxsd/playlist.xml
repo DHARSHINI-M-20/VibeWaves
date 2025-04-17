@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="playlist.xsd">
+    <song>
+        <title>Vibe On</title>
+        <artist>DJ Flow</artist>
+        <duration>2:45</duration>
+    </song>
+    <song>
+        <title>Wave Hit</title>
+        <artist>Beat King</artist>
+        <duration>3:15</duration>
+    </song>
+    <song>
+        <title>Chill Zone</title>
+        <artist>Lofi Girl</artist>
+        <duration>4:05</duration>
+    </song>
+</playlist>

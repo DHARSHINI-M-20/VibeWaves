@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Streaming App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Music Streaming App</h1>
+
+<!-- Section to Add a New Song -->
+<div>
+    <h2>Add a New Song</h2>
+    <form id="add-song-form">
+        <input type="text" id="song-title" placeholder="Title" required />
+        <input type="text" id="song-artist" placeholder="Artist" required />
+        <input type="text" id="song-album" placeholder="Album" required />
+        <input type="text" id="song-genre" placeholder="Genre" required />
+        <input type="number" id="song-duration" placeholder="Duration (in seconds)" required />
+        <button type="submit">Add Song</button>
+    </form>
+</div>
+
+<!-- Section to Display and Update Songs -->
+<div>
+    <h2>Available Songs</h2>
+    <table id="songs-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Genre</th>
+            <th>Duration</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Dynamic rows for songs will be populated here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Container for dynamically rendered Edit Form -->
+<div id="edit-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

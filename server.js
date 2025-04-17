@@ -1,12 +1,29 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
+const mongoose = require('mongoose'); // Import mongoose
 const cors = require('cors');
 const app = express();
 const port = 5000;
 
+// Middleware
 app.use(cors());
 app.use(express.json());
+
+// MongoDB connection
+const mongoURI = 'mongodb://localhost:27017/vibewaves'; // Replace with your MongoDB URI
+mongoose.connect(mongoURI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
+
+// Define a Song schema and model
+const songSchema = new mongoose.Schema({
+  id: Number,
+  title: String,
+  artist: String,
+  album: String,
+  src: String,
+});
+const Song = mongoose.model('Song', songSchema);
 
 // Serve static files including CSS
 app.use(express.static(path.join(__dirname, 'songsearch', 'public')));
@@ -21,82 +38,61 @@ app.get('/song.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'songsearch', 'public', 'song.html'));
 });
 
-const songsFile = path.join(__dirname, 'songs.json');
-
 // Get all songs
-app.get('/songs', (req, res) => {
-  fs.readFile(songsFile, (err, data) => {
-    if (err) return res.status(500).send('Error reading songs file');
-    const songs = JSON.parse(data);
+app.get('/songs', async (req, res) => {
+  try {
+    const songs = await Song.find();
     songs.forEach(song => {
       song.url = `${req.protocol}://${req.get('host')}/songs/${song.src}`;
     });
     res.json(songs);
-  });
+  } catch (err) {
+    res.status(500).send('Error fetching songs');
+  }
 });
 
 // Add a new song (POST)
-app.post('/songs', (req, res) => {
-  const newSong = req.body;
-  fs.readFile(songsFile, (err, data) => {
-    if (err) return res.status(500).send('Error reading songs file');
-    const songs = JSON.parse(data);
-    newSong.id = songs.length ? songs[songs.length - 1].id + 1 : 1;
-    songs.push(newSong);
-    fs.writeFile(songsFile, JSON.stringify(songs, null, 2), (err) => {
-      if (err) return res.status(500).send('Error saving song');
-      res.status(201).json(newSong);
-    });
-  });
+app.post('/songs', async (req, res) => {
+  try {
+    const newSong = new Song(req.body);
+    await newSong.save();
+    res.status(201).json(newSong);
+  } catch (err) {
+    res.status(500).send('Error saving song');
+  }
 });
 
 // Update a song (PUT)
-app.put('/songs/:id', (req, res) => {
-  const { id } = req.params;
-  const updatedSong = req.body;
-  fs.readFile(songsFile, (err, data) => {
-    if (err) return res.status(500).send('Error reading songs file');
-    let songs = JSON.parse(data);
-    const index = songs.findIndex(song => song.id === parseInt(id));
-    if (index === -1) return res.status(404).send('Song not found');
-    songs[index] = { ...songs[index], ...updatedSong };
-    fs.writeFile(songsFile, JSON.stringify(songs, null, 2), err => {
-      if (err) return res.status(500).send('Error updating song');
-      res.json(songs[index]);
-    });
-  });
+app.put('/songs/:id', async (req, res) => {
+  try {
+    const updatedSong = await Song.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
+    if (!updatedSong) return res.status(404).send('Song not found');
+    res.json(updatedSong);
+  } catch (err) {
+    res.status(500).send('Error updating song');
+  }
 });
 
 // Partially update a song (PATCH)
-app.patch('/songs/:id', (req, res) => {
-  const { id } = req.params;
-  const updates = req.body;
-  fs.readFile(songsFile, (err, data) => {
-    if (err) return res.status(500).send('Error reading songs file');
-    let songs = JSON.parse(data);
-    const index = songs.findIndex(song => song.id === parseInt(id));
-    if (index === -1) return res.status(404).send('Song not found');
-    songs[index] = { ...songs[index], ...updates };
-    fs.writeFile(songsFile, JSON.stringify(songs, null, 2), (err) => {
-      if (err) return res.status(500).send('Error updating song');
-      res.json(songs[index]);
-    });
-  });
+app.patch('/songs/:id', async (req, res) => {
+  try {
+    const updatedSong = await Song.findOneAndUpdate({ id: req.params.id }, req.body, { new: true });
+    if (!updatedSong) return res.status(404).send('Song not found');
+    res.json(updatedSong);
+  } catch (err) {
+    res.status(500).send('Error updating song');
+  }
 });
 
 // Delete a song (DELETE)
-app.delete('/songs/:id', (req, res) => {
-  const { id } = req.params;
-  fs.readFile(songsFile, (err, data) => {
-    if (err) return res.status(500).send('Error reading songs file');
-    let songs = JSON.parse(data);
-    const filteredSongs = songs.filter(song => song.id !== parseInt(id));
-    if (songs.length === filteredSongs.length) return res.status(404).send('Song not found');
-    fs.writeFile(songsFile, JSON.stringify(filteredSongs, null, 2), (err) => {
-      if (err) return res.status(500).send('Error deleting song');
-      res.status(204).send();
-    });
-  });
+app.delete('/songs/:id', async (req, res) => {
+  try {
+    const deletedSong = await Song.findOneAndDelete({ id: req.params.id });
+    if (!deletedSong) return res.status(404).send('Song not found');
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).send('Error deleting song');
+  }
 });
 
 // Serve audio files

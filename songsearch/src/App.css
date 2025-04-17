@@ -58,3 +58,49 @@ button:hover {
   cursor: pointer;
   font-size: 30px;
 }
+
+.realtime-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.realtime-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.realtime-container li {
+  padding: 10px;
+  margin: 5px 0;
+  background: #f4f4f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.list-icon {
+  color: #1DB954;
+}
+
+.home-icon {
+  color: #06fd50;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.now-playing-icon {
+  color: #d60bf9;
+}
+
+.search-icon {
+  color: #080909;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  font-size: 30px;
+}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import SettingsPage from './settings';
+import RealTimePage from "./NowplayingPage";
 
 console.log("App component is rendering");
 
@@ -64,8 +65,26 @@ const App = () => {
     navigate('/settings');
   };
 
+  const goToRealTimePage = () => {
+    navigate('/realtime');
+  };
+
   return (
     <div className="app-container">
+      <span
+        className="material-icons now-playing-icon"
+        onClick={goToRealTimePage}
+        style={{ position: "fixed", top: "10px", left: "10px", cursor: "pointer", fontSize: "30px" }}
+      >
+        music_note
+      </span>
+      <span
+        className="material-icons search-icon"
+        onClick={() => navigate("/")}
+        style={{ position: "fixed", top: "10px", left: "50%", transform: "translateX(-50%)", cursor: "pointer", fontSize: "30px" }}
+      >
+        search
+      </span>
       <span className="material-icons settings-icon" onClick={goToSettings}>settings</span>
       <Routes>
         <Route path="/" element={
@@ -96,6 +115,7 @@ const App = () => {
           </>
         } />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/realtime" element={<RealTimePage />} />
       </Routes>
     </div>
   );
